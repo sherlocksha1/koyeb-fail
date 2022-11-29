@@ -41,7 +41,7 @@ async def give_filter(client, message):
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
     if int(req) not in [query.from_user.id, 0]:
-        return await query.answer("This Message is not for you dear. Don't worry you can send new one !", show_alert=True)
+        return await query.answer("★彡Hey Bro彡★ ഇത് നിന്റെ അല്ല ....😎", show_alert=True)
     try:
         offset = int(offset)
     except:
@@ -120,7 +120,7 @@ async def next_page(bot, query):
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
     if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("This Message is not for you dear. Don't worry you can send new one !", show_alert=True)
+        return await query.answer("★彡Hey Bro, നിനക്ക് ഈ സിനിമ വേണമെങ്കിൽ നീ തന്നെ റിക്വസ്റ്റ് ചെയ്യണം🤦‍♂\n\nʀᴇǫᴜᴇsᴛ ʏᴏᴜʀ ᴏᴡɴ 💕", show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
@@ -135,7 +135,7 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            k = await query.message.edit('😒 currently unavailable ! we are really sorry for inconvenience !\n Have patience ! our great admins will upload it as soon as possible !')
+            k = await query.message.edit('<b>✯ നിങ്ങൾ ചോദിച്ച മൂവി റിലീസ് ആയിട്ടുണ്ടോ..? </b>\n\n<b>📯ɴʙ: Cʟɪᴄᴋ Bᴇʟᴏᴡ Rᴇᴀsᴏɴs Bᴜᴛᴛᴏɴ</b>')
             await asyncio.sleep(10)
             await k.delete()
 
@@ -364,7 +364,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f_caption,
                     protect_content=True if ident == "filep" else False 
                 )
-                await query.answer('Check PM, I have sent files in pm', show_alert=True)
+                await query.answer('★彡Hey Bruh..彡★\n\n✯ മൂവിയുടെ ഫയൽ ‍‍ഞാന്‍ pm ഇൽ ഇട്ടിട്ടുണ്ട് പോയി നോക്ക്..🏃\n\n✯ 𝖨 𝗁𝖺𝗏𝖾 𝗉𝗎𝗍 𝗍𝗁𝖾 𝖿𝗂𝗅𝖾 𝗈𝖿 𝗍𝗁𝖾 𝗆𝗈𝗏𝗂𝖾 𝖺𝗌 𝖺 𝗉𝗆. 𝖦𝗈 𝖠𝗇𝖽 𝖲𝖾𝖾', show_alert=True)
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !', show_alert=True)
         except PeerIdInvalid:
@@ -373,7 +373,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
     elif query.data.startswith("checksub"):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
-            await query.answer("Mere saamne jyada smart nhi banne ka sona 😒", show_alert=True)
+            await query.answer("ഒന്ന് ജോയിൻ ചെയ്യടാ ഉവ്വേ.. ഞങ്ങളും ജീവിച്ചു പൊക്കോട്ടെ😒", show_alert=True)
             return
         ident, file_id = query.data.split("#")
         files_ = await get_file_details(file_id)
@@ -393,11 +393,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f_caption = f_caption
         if f_caption is None:
             f_caption = f"{title}"
+        buttons = [[
+            InlineKeyboardButton('𖣘 𝗠𝗢𝗩𝗜𝗘𝗦 𝗚𝗥𝗢𝗨𝗣 𖣘', url='https://t.me/new_movies_group_2021')
+         ]]
         await query.answer()
         await client.send_cached_media(
             chat_id=query.from_user.id,
             file_id=file_id,
             caption=f_caption,
+            reply_markup=InlineKeyboardMarkup(buttons),
             protect_content=True if ident == 'checksubp' else False
         )
     elif query.data == "pages":
@@ -407,7 +411,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('➕↖️ Add Me To Your Groups ↗️➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
             InlineKeyboardButton('🧞‍♀️ Search 🧐', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🔔 Updates 🤖', url='https://t.me/LazyDeveloper')
+            InlineKeyboardButton('🔔 Updates 🤖', url='https://t.me/new_movies_group_2021')
         ], [
             InlineKeyboardButton('🙆🏻 Help 🦾', callback_data='help'),
             InlineKeyboardButton('♥️ About ♥️', callback_data='about')
@@ -438,7 +442,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons = [[
-            InlineKeyboardButton('🔔 Updates 🤖', url='https://t.me/LazyDeveloper'),
+            InlineKeyboardButton('🔔 Updates 🤖', url='https://t.me/new_movies_group_2021'),
             InlineKeyboardButton('♥️ Source', callback_data='source')
         ], [
             InlineKeyboardButton('🏠 Home', callback_data='start'),
@@ -764,7 +768,7 @@ async def advantage_spell_chok(msg):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist))  # removing duplicates
     if not movielist:
-        k = await msg.reply("Hey Sona! Mujhe is naam se koi movie nhi mili, Mujhe lgta hai ki aapne spelling galat likh dii h 🤷‍♀️!\nPlease check your spelling once again 🤦‍♀️... or \n Discuss your problem with our admin here 👉 @discussion_groupp ")
+        k = await msg.reply("𝖲ᴏʀʀʏ 𝖭ᴏ 𝖥ɪʟᴇ𝗌 𝖶ᴇʀᴇ 𝖥ᴏᴜɴᴅ.\n\n𝖢ʜᴇᴄᴋ 𝖸ᴏᴜʀ 𝖲ᴘᴇʟʟɪɴɢ ɪɴ 𝖦ᴏᴏɢʟᴇ ᴀɴᴅ 𝖳ʀʏ 𝖠ɢᴀɪɴ ")
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -776,7 +780,7 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    await msg.reply("Hey Sona! Mujhe is naam se koi movie nhi mili, Mujhe lgta hai ki aapne spelling galat likh dii h 🤷‍♀️!\nPlease check your spelling once again 🤦‍♀️... or \n Discuss your problem with our admin here 👉 @discussion_groupp ",
+    await msg.reply("✯ നിങ്ങൾ ഉദ്ദേശിച്ച മൂവി താഴെ കാണുന്ന വല്ലതും ആണ് എങ്കിൽ.അതിൽ ക്ലിക്ക് ചെയ്യുക</b>\n\n<b>✯ ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏꜰ ᴛʜᴇꜱᴇ?\n\n📯 ɴʙ:ᴄʟɪᴄᴋ ᴛʜᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ᴏɴʟʏ ᴅᴏɴᴛ ᴜꜱᴇ ʏᴇᴀʀ ʙᴜᴛᴛᴏɴ </b>",
                     reply_markup=InlineKeyboardMarkup(btn))
 
 
